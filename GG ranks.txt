@@ -1,0 +1,31 @@
+General of the Army (Five Stars)	
+General (Four Stars)	
+Lieutenant General (Three Stars)
+Major General (Two Stars)	
+Brigadier General (One Star)
+Colonel (Three Magdalo 7-Ray Suns)	
+Lieutenant Colonel (Two Magdalo 7-Ray Suns)	
+Major (One Magdalo 7-Ray Sun)	
+Captain (Three Magdalo Triangles)	
+1st Lieutenant (Two Magdalo Triangles)
+2nd Lieutenant (One Magdalo Triangle)
+Sergeant (Three Chevrons)	
+Private (One Chevron)
+Spy (Two Prying Eyes)
+Flag (Philippine Flag)
+
+ Flag,
+        Spy,        
+        Private,
+        Sergeant,
+        SecondLieutenant,
+        FirstLieutenant,
+        Captain,
+        Major,
+        LieutenantColonel,
+		Colonel,
+        BrigadierGeneral,
+        MajorGeneral,
+        LieutenantGeneral,
+        General,
+        FiveStarGeneral
