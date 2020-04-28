@@ -90,13 +90,15 @@ namespace GameOfTheGenerals
             }            
             if (piece.RankValue < this.RankValue)
             {
-                piece.Eliminate();
+                this.CurrentLocation = piece.CurrentLocation;
+                piece.Eliminate();                
                 piece.RemoveFromBoard();
                 Console.WriteLine($"This piece is eliminated {piece}");
                 return piece;
             }
             else
             {
+                piece.CurrentLocation = this.CurrentLocation;
                 this.Eliminate();
                 this.RemoveFromBoard();
                 Console.WriteLine($"This piece is eliminated {this}");
@@ -174,7 +176,7 @@ namespace GameOfTheGenerals
 
         public override string ToString()
         {
-            return ($"{CurrentLocation.Coordinates()}; {RankName()}; {RankValue}; {Color}");
+            return ($"{CurrentLocation.Coordinates()}; {RankName()}; {RankValue}; {Color}; {IsEliminated}");
         }
     }
 }

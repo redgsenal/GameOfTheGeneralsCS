@@ -78,6 +78,7 @@ namespace GameOfTheGenerals
             {
                 Console.WriteLine($"{piece}");
             }
+            Console.WriteLine($"board pieces size: {BoardSoldierPieces.Count}");
             Console.WriteLine("****");
         }
 
@@ -132,11 +133,11 @@ namespace GameOfTheGenerals
             }
             if (p2 is EmptyPiece)
             {
-                p.CurrentLocation = newLoc; 
+                p.CurrentLocation = newLoc;                
             }
             else
             {
-                throw new ApplicationException("New location is not empty. {p2}");
+                throw new ApplicationException($"New location is not empty. {p2}");
             }
         }
 
