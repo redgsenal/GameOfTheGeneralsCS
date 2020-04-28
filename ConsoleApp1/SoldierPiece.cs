@@ -28,6 +28,7 @@ namespace GameOfTheGenerals
     // black: start at y = 8, end 1
     public enum ColorSide
     {
+        NUETRAL,
         WHITE,
         BLACK
     }
@@ -78,7 +79,7 @@ namespace GameOfTheGenerals
         {
             return IsSameBoardLocation(piece.CurrentLocation);
         }
-        public void Challenge(SoldierPiece piece)
+        public virtual SoldierPiece Challenge(SoldierPiece piece)
         {
             if (piece.Equals(this))
             {
@@ -86,19 +87,26 @@ namespace GameOfTheGenerals
             }
             if (piece.Color.Equals(this.Color)){
                 throw new System.ApplicationException("Cannot challenge piece of the same color.");
-            }
-            if (!piece.IsSameBoardLocation(this.CurrentLocation))
-            {
-                throw new System.ApplicationException("Cannot challenge piece not on same location.");
-            }
+            }            
             if (piece.RankValue < this.RankValue)
             {
                 piece.Eliminate();
+                piece.RemoveFromBoard();
+                Console.WriteLine($"This piece is eliminated {piece}");
+                return piece;
             }
             else
             {
                 this.Eliminate();
+                this.RemoveFromBoard();
+                Console.WriteLine($"This piece is eliminated {this}");
+                return this;
             }                
+        }
+
+        public void RemoveFromBoard()
+        {
+            this.CurrentLocation = new BoardLocation(0, 0);
         }
 
         public void Eliminate()
@@ -106,10 +114,36 @@ namespace GameOfTheGenerals
             IsEliminated = true;
         }
 
-        public void Move(BoardLocation location)
-        {            
-            this.CurrentLocation = location;
+        public void Move(BoardLocation newLocation)
+        {
+            if (!IsValidMove(newLocation))
+            {
+                throw new ApplicationException($"Invalid move to new location {newLocation.Coordinates().ToString()}");
+            }
+            this.CurrentLocation = newLocation;
         }
+        private bool IsValidMove(BoardLocation newLocation)
+        {
+            if ((newLocation == null) || 
+                (!newLocation.IsValidLocation()) ||                
+                // is piece is already removed
+                (newLocation.IsRemovedLocation())) 
+            {
+                return false;
+            }
+            if (newLocation.BoardX == this.CurrentLocation.BoardX)
+            {
+                return (Math.Abs(newLocation.BoardY - this.CurrentLocation.BoardY) == 1);
+            }
+            if (newLocation.BoardY == this.CurrentLocation.BoardY)
+            {
+                return (Math.Abs((newLocation.BoardX - this.CurrentLocation.BoardX)) == 1);
+            }
+            Console.WriteLine($"current location: {this.CurrentLocation}");
+            Console.WriteLine($"new location: {newLocation}");
+            return false;
+        }
+
         public string RankName()
         {
             return RankLevel.ToString().Replace("_", " ");

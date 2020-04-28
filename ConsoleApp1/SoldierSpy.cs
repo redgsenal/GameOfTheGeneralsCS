@@ -12,5 +12,17 @@ namespace GameOfTheGenerals
             this.RankLevel = Rank.Spy;
             this.RankValue = 100000;
         }
+        public override SoldierPiece Challenge (SoldierPiece piece)
+        {
+            if (piece is SoldierPrivate)
+            {
+                this.Eliminate();
+                this.RemoveFromBoard();
+                return piece;
+            }
+            piece.Eliminate();
+            piece.RemoveFromBoard();
+            return this;
+        }
     }
 }

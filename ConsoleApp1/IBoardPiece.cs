@@ -12,7 +12,7 @@ namespace GameOfTheGenerals
         // mark this piece are elimated and remove this piece from the board
         void Eliminate();
         // challenge this piece with another piece
-        void Challenge(SoldierPiece piece);
+        SoldierPiece Challenge(SoldierPiece piece);
         string RankName();
     }
 }

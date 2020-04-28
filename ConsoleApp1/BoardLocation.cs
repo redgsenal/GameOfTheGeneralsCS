@@ -4,12 +4,13 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace GameOfTheGenerals
-{
-    // board
-    // white: (1,1) - (4,9)
-    // black: (1,5) - (9,8)
+{    
     public class BoardLocation : IEquatable<BoardLocation>
     {
+        public const int MIN_X = 1;
+        public const int MAX_X = 9;
+        public const int MIN_Y = 1;
+        public const int MAX_Y = 8;
         public BoardLocation()
         {
             BoardX = 0;
@@ -50,11 +51,15 @@ namespace GameOfTheGenerals
             {
                 return true;
             }                
-            return IsValidMinMax(x, 1, 9) || IsValidMinMax(y, 1, 8);
+            return IsValidMinMax(x, MIN_X, MAX_X) || IsValidMinMax(y, MIN_Y, MAX_Y);
         }
         private bool IsValidMinMax(int v, int min, int max) 
         {            
             return (v > min || v < max);
+        }
+        public bool IsRemovedLocation()
+        {
+            return (BoardX == 0 && BoardY == 0);
         }
     }
 }

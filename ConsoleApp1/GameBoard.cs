@@ -71,6 +71,87 @@ namespace GameOfTheGenerals
                 BoardSoldierPieces.Add(playerPiece);                
             }                        
         }
+        public void ListBoardSoldierPieces()
+        {
+            Console.WriteLine("****");
+            foreach (SoldierPiece piece in BoardSoldierPieces)
+            {
+                Console.WriteLine($"{piece}");
+            }
+            Console.WriteLine("****");
+        }
 
+        public SoldierPiece GetSoldierPiece(int x, int y)
+        {
+            return GetSoldierPiece(new BoardLocation(x, y));
+        }
+
+        public SoldierPiece GetSoldierPiece(BoardLocation loc)
+        {
+            foreach (SoldierPiece p in BoardSoldierPieces)
+            {
+                if (p.CurrentLocation.Equals(loc))
+                {
+                    return p;
+                }
+            }
+            return new EmptyPiece(loc);
+        }
+
+        public void RemoveSoldierPiece(SoldierPiece piece)
+        {
+            piece.CurrentLocation = new BoardLocation(0, 0);
+            piece.IsEliminated = true;
+        }
+
+        public void MoveSoldierPiece(BoardLocation oldLoc, BoardLocation newLoc)
+        {
+            SoldierPiece p = GetSoldierPiece(oldLoc);
+            SoldierPiece p2 = GetSoldierPiece(newLoc);
+            if (p is EmptyPiece)
+            {
+                throw new ApplicationException($"Location {oldLoc.Coordinates().ToString()} does not contain a piece to move.");
+            }
+            if (!(p2 is EmptyPiece))
+            {
+                p.Challenge(p2);
+            }
+            else
+            {
+                p.Move(newLoc);
+            }            
+        }
+
+        public void RelocateSoldierPiece(BoardLocation oldLoc, BoardLocation newLoc)
+        {
+            SoldierPiece p = GetSoldierPiece(oldLoc);
+            SoldierPiece p2 = GetSoldierPiece(newLoc);
+            if (p is EmptyPiece)
+            {
+                throw new ApplicationException($"Location {oldLoc.Coordinates().ToString()} does not contain a piece to move.");
+            }
+            if (p2 is EmptyPiece)
+            {
+                p.CurrentLocation = newLoc; 
+            }
+            else
+            {
+                throw new ApplicationException("New location is not empty. {p2}");
+            }
+        }
+
+        public List<SoldierPiece> ListEliminatedSoldierPieces()
+        {
+            List<SoldierPiece> r = new List<SoldierPiece>();
+            foreach (SoldierPiece p in BoardSoldierPieces)
+            {
+                if (p.IsEliminated)
+                {
+                    r.Add(p);
+                    Console.WriteLine($"{p}");
+                }
+            }            
+            return r;
+        }
     }
 }
