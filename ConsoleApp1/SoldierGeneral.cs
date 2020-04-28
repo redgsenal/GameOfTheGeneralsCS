@@ -6,14 +6,11 @@ namespace GameOfTheGenerals
 {
     public class SoldierGeneral : SoldierPiece
     {
-        public SoldierGeneral() : base() { }
-        public SoldierGeneral (BoardLocation location) : base(location)
-        {            
-        }
+        public SoldierGeneral(BoardLocation location, Player player, ColorSide color) : base(location, player, color) { }
         public override void InitializeRank()
         {
             this.RankLevel = Rank.General;
-            this.RankValue = 9;
+            this.RankValue = 5000;
         }
     }
 }

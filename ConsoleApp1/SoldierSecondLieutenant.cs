@@ -6,6 +6,7 @@ namespace GameOfTheGenerals
 {
     class SoldierSecondLieutenant : SoldierPiece
     {
+        public SoldierSecondLieutenant(BoardLocation location, Player player, ColorSide color) : base(location, player, color) { }
         public override void InitializeRank()
         {
             this.RankLevel = Rank.Second_Lieutenant;

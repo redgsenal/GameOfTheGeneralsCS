@@ -6,7 +6,7 @@ namespace GameOfTheGenerals
 {
     public class Utility
     {
-        public static List<SoldierPiece> BuildListBoardSoldierPieces()
+        /*public static List<SoldierPiece> BuildListBoardSoldierPieces()
         {
             List<SoldierPiece> pieces = new List<SoldierPiece>();
             pieces.AddRange(CreateListBoardSoldierPiece(new SoldierFlag(), 1));
@@ -25,7 +25,7 @@ namespace GameOfTheGenerals
             pieces.AddRange(CreateListBoardSoldierPiece(new SoldierSecondLieutenant(), 1));
             pieces.AddRange(CreateListBoardSoldierPiece(new SoldierSergeant(), 1));
             return pieces;
-        }
+        }*/
 
         public static List<SoldierPiece> CreateListBoardSoldierPiece(SoldierPiece piece, int quantity)
         {
