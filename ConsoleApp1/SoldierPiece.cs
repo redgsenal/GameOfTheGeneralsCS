@@ -126,7 +126,7 @@ namespace GameOfTheGenerals
         {
             if (!IsValidMove(newLocation))
             {
-                throw new ApplicationException($"Invalid move to new location {newLocation.Coordinates().ToString()}");
+                throw new ApplicationException($"Invalid move to new location {newLocation.Coordinates()}");
             }
             this.CurrentLocation = newLocation;
         }
@@ -190,8 +190,7 @@ namespace GameOfTheGenerals
         }
 
         public SoldierPiece SwapSoldierPiece(SoldierPiece losingPiece, SoldierPiece winnerPiece)
-        {
-            winnerPiece.CurrentLocation = losingPiece.CurrentLocation;
+        {            
             losingPiece.Eliminate();            
             losingPiece.RemoveFromBoard();
             Console.WriteLine($"{winnerPiece.Color} - {winnerPiece.RankName()} wins over {losingPiece.Color} - {losingPiece.RankName()} at {winnerPiece.CurrentLocation.Coordinates()}");

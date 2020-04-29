@@ -123,7 +123,7 @@ namespace GameOfTheGenerals
             SoldierPiece p2 = GetSoldierPiece(toLocation);
             if (p is EmptyPiece)
             {
-                throw new ApplicationException($"Location {fromLocation.Coordinates().ToString()} does not contain a piece to move.");
+                throw new ApplicationException($"Location {fromLocation.Coordinates()} does not contain a piece to move.");
             }
             if (!(p2 is EmptyPiece))
             {
@@ -135,17 +135,17 @@ namespace GameOfTheGenerals
             }            
         }
 
-        public void RelocateSoldierPiece(BoardLocation oldLoc, BoardLocation newLoc)
+        public void RelocateSoldierPiece(BoardLocation fromLocation, BoardLocation toLocation)
         {
-            SoldierPiece p = GetSoldierPiece(oldLoc);
-            SoldierPiece p2 = GetSoldierPiece(newLoc);
+            SoldierPiece p = GetSoldierPiece(fromLocation);
+            SoldierPiece p2 = GetSoldierPiece(toLocation);
             if (p is EmptyPiece)
             {
-                throw new ApplicationException($"Location {oldLoc.Coordinates().ToString()} does not contain a piece to move.");
+                throw new ApplicationException($"Location {fromLocation.Coordinates()} does not contain a piece to move.");
             }
             if (p2 is EmptyPiece)
             {
-                p.CurrentLocation = newLoc;                
+                p.CurrentLocation = toLocation;                
             }
             else
             {
@@ -164,7 +164,7 @@ namespace GameOfTheGenerals
                     r.Add(p);
                     Console.WriteLine($"{p}");
                 }
-            }            
+            }
             return r;
         }
     }

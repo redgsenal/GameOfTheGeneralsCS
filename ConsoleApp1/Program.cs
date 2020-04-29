@@ -35,17 +35,29 @@ namespace GameOfTheGenerals
             game.RelocateSoldierPiece(new BoardLocation(3, 2), new BoardLocation(3, 4));
             game.RelocateSoldierPiece(new BoardLocation(3, 7), new BoardLocation(3, 5));
 
+            // white flag
+            game.RelocateSoldierPiece(new BoardLocation(5, 1), new BoardLocation(5, 4));
+            // black flag
+            game.RelocateSoldierPiece(new BoardLocation(5, 8), new BoardLocation(5, 5));
+
             game.ListBoardSoldierPieces();
 
-            game.MoveSoldierPiece(new BoardLocation(7, 5), new BoardLocation(7, 4));
-            
-            game.MoveSoldierPiece(new BoardLocation(4, 5), new BoardLocation(4, 4));
+            // white spy over black private -- black private wins
+            //game.MoveSoldierPiece(new BoardLocation(7, 5), new BoardLocation(7, 4));
+            // black major over white 1st Lt -- black major wins
+            //game.MoveSoldierPiece(new BoardLocation(4, 5), new BoardLocation(4, 4));
+            // black spy over wite private -- white private wins
             game.MoveSoldierPiece(new BoardLocation(8, 5), new BoardLocation(8, 4));
+            // black cap over white cap -- black cap wins
+            //game.MoveSoldierPiece(new BoardLocation(3, 5), new BoardLocation(3, 4));
+            // white flag move to black flag - white flag wins
+            //game.MoveSoldierPiece(new BoardLocation(5, 4), new BoardLocation(5, 5));
 
-            game.MoveSoldierPiece(new BoardLocation(3, 5), new BoardLocation(3, 4));
+            // do errors
+            game.MoveSoldierPiece(new BoardLocation(8, 3), new BoardLocation(8, 5));
 
-            game.ListBoardSoldierPieces();
-            game.ListEliminatedSoldierPieces();
+            // game.ListBoardSoldierPieces();
+            game.ListEliminatedSoldierPieces();            
         }
     }
 }
