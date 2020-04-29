@@ -194,6 +194,7 @@ namespace GameOfTheGenerals
             winnerPiece.CurrentLocation = losingPiece.CurrentLocation;
             losingPiece.Eliminate();            
             losingPiece.RemoveFromBoard();
+            Console.WriteLine($"{winnerPiece.Color} - {winnerPiece.RankName()} wins over {losingPiece.Color} - {losingPiece.RankName()} at {winnerPiece.CurrentLocation.Coordinates()}");
             return winnerPiece;
         }
     }

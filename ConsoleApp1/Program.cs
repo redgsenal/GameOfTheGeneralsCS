@@ -31,13 +31,18 @@ namespace GameOfTheGenerals
             // 1st lt. white
             game.RelocateSoldierPiece(new BoardLocation(2, 2), new BoardLocation(4, 4));
 
-            // Console.WriteLine(game.GetSoldierPiece(4, 6));
+            // cap white vs cap black
+            game.RelocateSoldierPiece(new BoardLocation(3, 2), new BoardLocation(3, 4));
+            game.RelocateSoldierPiece(new BoardLocation(3, 7), new BoardLocation(3, 5));
+
             game.ListBoardSoldierPieces();
 
             game.MoveSoldierPiece(new BoardLocation(7, 5), new BoardLocation(7, 4));
             
             game.MoveSoldierPiece(new BoardLocation(4, 5), new BoardLocation(4, 4));
             game.MoveSoldierPiece(new BoardLocation(8, 5), new BoardLocation(8, 4));
+
+            game.MoveSoldierPiece(new BoardLocation(3, 5), new BoardLocation(3, 4));
 
             game.ListBoardSoldierPieces();
             game.ListEliminatedSoldierPieces();

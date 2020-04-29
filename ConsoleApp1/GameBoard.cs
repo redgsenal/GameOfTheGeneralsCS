@@ -117,13 +117,13 @@ namespace GameOfTheGenerals
             piece.IsEliminated = true;
         }
 
-        public void MoveSoldierPiece(BoardLocation oldLoc, BoardLocation newLoc)
+        public void MoveSoldierPiece(BoardLocation fromLocation, BoardLocation toLocation)
         {
-            SoldierPiece p = GetSoldierPiece(oldLoc);
-            SoldierPiece p2 = GetSoldierPiece(newLoc);
+            SoldierPiece p = GetSoldierPiece(fromLocation);
+            SoldierPiece p2 = GetSoldierPiece(toLocation);
             if (p is EmptyPiece)
             {
-                throw new ApplicationException($"Location {oldLoc.Coordinates().ToString()} does not contain a piece to move.");
+                throw new ApplicationException($"Location {fromLocation.Coordinates().ToString()} does not contain a piece to move.");
             }
             if (!(p2 is EmptyPiece))
             {
@@ -131,7 +131,7 @@ namespace GameOfTheGenerals
             }
             else
             {
-                p.Move(newLoc);
+                p.Move(toLocation);
             }            
         }
 
@@ -155,6 +155,7 @@ namespace GameOfTheGenerals
 
         public List<SoldierPiece> ListEliminatedSoldierPieces()
         {
+            Console.WriteLine("** eliminated pieces **");
             List<SoldierPiece> r = new List<SoldierPiece>();
             foreach (SoldierPiece p in BoardSoldierPieces)
             {

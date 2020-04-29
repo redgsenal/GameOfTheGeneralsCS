@@ -21,7 +21,7 @@ namespace GameOfTheGenerals
             }
             if (piece is SoldierSpy)
             {
-                return SwapSoldierPiece(this, piece);
+                return SwapSoldierPiece(piece, this);
             }
             return base.Challenge(piece);
         }
