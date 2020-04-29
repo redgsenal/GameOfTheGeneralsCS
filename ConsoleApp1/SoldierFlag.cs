@@ -12,5 +12,13 @@ namespace GameOfTheGenerals
             this.RankLevel = Rank.Flag_Rank;
             this.RankValue = 1;
         }
+        public override SoldierPiece Challenge(SoldierPiece piece)
+        {
+            if (piece is SoldierFlag)
+            {
+                return SwapSoldierPiece(this, piece);
+            }
+            return SwapSoldierPiece(piece, this);
+        }
     }
 }

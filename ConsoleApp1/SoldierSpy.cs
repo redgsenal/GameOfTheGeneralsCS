@@ -16,13 +16,9 @@ namespace GameOfTheGenerals
         {
             if (piece is SoldierPrivate)
             {
-                this.Eliminate();
-                this.RemoveFromBoard();
-                return piece;
+                return SwapSoldierPiece(this, piece);
             }
-            piece.Eliminate();
-            piece.RemoveFromBoard();
-            return this;
+            return SwapSoldierPiece(piece, this);
         }
     }
 }

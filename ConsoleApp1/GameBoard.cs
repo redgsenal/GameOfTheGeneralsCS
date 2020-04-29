@@ -12,43 +12,54 @@ namespace GameOfTheGenerals
         {            
             return true;
         }
+        public static List<SoldierPiece> CreateBoardSoldierPieces(SoldierPiece piece, int quantity)
+        {
+            List<SoldierPiece> pieces = new List<SoldierPiece>();
+            if (piece == null || quantity < 1)
+                return pieces;
+            while (pieces.Count < quantity)
+            {
+                pieces.Add(piece);
+            }
+            return pieces;
+        }
 
         public List<SoldierPiece> BuildBoardSoldierPieces(Player player, ColorSide colorSide)
         {
             List<SoldierPiece> pieces = new List<SoldierPiece>();
-            int y1 = 1;
-            int y2 = 2;
-            int y3 = 3;
+            int backrow = 1;
+            int middlerow = 2;
+            int frontrow = 3;
             if (colorSide == ColorSide.BLACK)
             {
-                y1 = 8;
-                y2 = 7;
-                y3 = 6;
+                backrow = 8;
+                middlerow = 7;
+                frontrow = 6;
             }
-            // 6 privates
-            pieces.Add(new SoldierPrivate(new BoardLocation(1, y3), player, colorSide));            
-            pieces.Add(new SoldierPrivate(new BoardLocation(2, y3), player, colorSide));
-            pieces.Add(new SoldierPrivate(new BoardLocation(3, y3), player, colorSide));
-            pieces.Add(new SoldierPrivate(new BoardLocation(4, y3), player, colorSide));
-            pieces.Add(new SoldierPrivate(new BoardLocation(5, y3), player, colorSide));
-            pieces.Add(new SoldierPrivate(new BoardLocation(6, y3), player, colorSide));
+            // 6 privates            
+            pieces.Add(new SoldierPrivate(new BoardLocation(1, frontrow), player, colorSide));
+            pieces.Add(new SoldierPrivate(new BoardLocation(2, frontrow), player, colorSide));
+            pieces.Add(new SoldierPrivate(new BoardLocation(3, frontrow), player, colorSide));
+            pieces.Add(new SoldierPrivate(new BoardLocation(4, frontrow), player, colorSide));
+            pieces.Add(new SoldierPrivate(new BoardLocation(5, frontrow), player, colorSide));
+            pieces.Add(new SoldierPrivate(new BoardLocation(6, frontrow), player, colorSide));
             // 2 spies
-            pieces.Add(new SoldierSpy(new BoardLocation(7, y3), player, colorSide));
-            pieces.Add(new SoldierSpy(new BoardLocation(8, y3), player, colorSide));
+            pieces.Add(new SoldierSpy(new BoardLocation(7, frontrow), player, colorSide));
+            pieces.Add(new SoldierSpy(new BoardLocation(8, frontrow), player, colorSide));
             // remaining pieces
-            pieces.Add(new SoldierSergeant(new BoardLocation(1, y2), player, colorSide));
-            pieces.Add(new SoldierSecondLieutenant(new BoardLocation(2, y2), player, colorSide));
-            pieces.Add(new SoldierFirstLieutenant(new BoardLocation(3, y2), player, colorSide));
-            pieces.Add(new SoldierCaptain(new BoardLocation(4, y2), player, colorSide));
-            pieces.Add(new SoldierMajor(new BoardLocation(5, y2), player, colorSide));
-            pieces.Add(new SoldierLieutenantColonel(new BoardLocation(6, y2), player, colorSide));
-            pieces.Add(new SoldierColonel(new BoardLocation(7, y2), player, colorSide));
-            pieces.Add(new SoldierBrigadierGeneral(new BoardLocation(8, y2), player, colorSide));
-            pieces.Add(new SoldierMajorGeneral(new BoardLocation(9, y2), player, colorSide));
-            pieces.Add(new SoldierLieutenantGeneral(new BoardLocation(1, y1), player, colorSide));
-            pieces.Add(new SoldierFlag(new BoardLocation(4, y1), player, colorSide));
-            pieces.Add(new SoldierGeneral(new BoardLocation(5, y1), player, colorSide));
-            pieces.Add(new SoldierFiveStarGeneral(new BoardLocation(9, y1), player, colorSide));
+            pieces.Add(new SoldierSergeant(new BoardLocation(9, frontrow), player, colorSide));
+            pieces.Add(new SoldierSecondLieutenant(new BoardLocation(1, middlerow), player, colorSide));
+            pieces.Add(new SoldierFirstLieutenant(new BoardLocation(2, middlerow), player, colorSide));
+            pieces.Add(new SoldierCaptain(new BoardLocation(3, middlerow), player, colorSide));
+            pieces.Add(new SoldierMajor(new BoardLocation(4, middlerow), player, colorSide));
+            pieces.Add(new SoldierLieutenantColonel(new BoardLocation(5, middlerow), player, colorSide));
+            pieces.Add(new SoldierColonel(new BoardLocation(6, middlerow), player, colorSide));
+            pieces.Add(new SoldierBrigadierGeneral(new BoardLocation(7, middlerow), player, colorSide));
+            pieces.Add(new SoldierMajorGeneral(new BoardLocation(8, middlerow), player, colorSide));
+            pieces.Add(new SoldierLieutenantGeneral(new BoardLocation(9, middlerow), player, colorSide));
+            pieces.Add(new SoldierGeneral(new BoardLocation(1, backrow), player, colorSide));
+            pieces.Add(new SoldierFlag(new BoardLocation(5, backrow), player, colorSide));
+            pieces.Add(new SoldierFiveStarGeneral(new BoardLocation(9, backrow), player, colorSide));
             return pieces;
         }
 
@@ -71,6 +82,7 @@ namespace GameOfTheGenerals
                 BoardSoldierPieces.Add(playerPiece);                
             }                        
         }
+
         public void ListBoardSoldierPieces()
         {
             Console.WriteLine("****");

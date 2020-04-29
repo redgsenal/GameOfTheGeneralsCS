@@ -16,15 +16,9 @@ namespace GameOfTheGenerals
         {
             if (piece is SoldierSpy)
             {
-                piece.Eliminate();
-                this.CurrentLocation = piece.CurrentLocation;
-                piece.RemoveFromBoard();
-                return this;
+                return SwapSoldierPiece(this, piece);
             }
-            this.Eliminate();
-            piece.CurrentLocation = this.CurrentLocation;
-            this.RemoveFromBoard();
-            return piece;
+            return SwapSoldierPiece(piece, this);
         }
 
     }

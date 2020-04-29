@@ -75,10 +75,12 @@ namespace GameOfTheGenerals
         {
             return this.CurrentLocation.Equals(location);
         }
+
         public bool IsPieceSameBoadLocation(SoldierPiece piece)
         {
             return IsSameBoardLocation(piece.CurrentLocation);
         }
+
         public virtual SoldierPiece Challenge(SoldierPiece piece)
         {
             if (piece.Equals(this))
@@ -124,6 +126,7 @@ namespace GameOfTheGenerals
             }
             this.CurrentLocation = newLocation;
         }
+
         private bool IsValidMove(BoardLocation newLocation)
         {
             if ((newLocation == null) || 
@@ -148,7 +151,7 @@ namespace GameOfTheGenerals
 
         public string RankName()
         {
-            return RankLevel.ToString().Replace("_", " ");
+            return RankLevel.ToString().Replace("_", " ").Replace("Soldier", String.Empty).Replace("Rank", String.Empty).Trim(); ;
         }
 
         public bool Equals([AllowNull] SoldierPiece other)
@@ -161,14 +164,17 @@ namespace GameOfTheGenerals
                 && (EqualColor(other))
                 && (EqualRank(other));            
         }
+
         public bool EqualType([AllowNull] SoldierPiece other)
         {
             return (other != null && (other is SoldierPiece));
         }
+
         public bool EqualColor([AllowNull] SoldierPiece other)
         {
             return this.Color.Equals(other.Color);
         }
+
         public bool EqualRank([AllowNull] SoldierPiece other)
         {            
             return (this.RankValue.Equals(other.RankValue));
@@ -177,6 +183,14 @@ namespace GameOfTheGenerals
         public override string ToString()
         {
             return ($"{CurrentLocation.Coordinates()}; {RankName()}; {RankValue}; {Color}; {IsEliminated}");
+        }
+
+        public SoldierPiece SwapSoldierPiece(SoldierPiece losingPiece, SoldierPiece winnerPiece)
+        {
+            winnerPiece.CurrentLocation = losingPiece.CurrentLocation;
+            losingPiece.Eliminate();            
+            losingPiece.RemoveFromBoard();
+            return winnerPiece;
         }
     }
 }
