@@ -14,11 +14,16 @@ namespace GameOfTheGenerals
         }
         public override SoldierPiece Challenge(SoldierPiece piece)
         {
+            ValidateChallenge(piece);
+            if (piece is SoldierPrivate)
+            {
+                return SwapSoldierPiece(piece, this);
+            }
             if (piece is SoldierSpy)
             {
                 return SwapSoldierPiece(this, piece);
             }
-            return SwapSoldierPiece(piece, this);
+            return base.Challenge(piece);
         }
 
     }

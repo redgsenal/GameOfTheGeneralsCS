@@ -81,31 +81,35 @@ namespace GameOfTheGenerals
             return IsSameBoardLocation(piece.CurrentLocation);
         }
 
-        public virtual SoldierPiece Challenge(SoldierPiece piece)
+        public void ValidateChallenge(SoldierPiece piece)
         {
             if (piece.Equals(this))
             {
                 throw new System.ApplicationException("Cannot challenge piece to itself.");
             }
-            if (piece.Color.Equals(this.Color)){
-                throw new System.ApplicationException("Cannot challenge piece of the same color.");
-            }            
-            if (piece.RankValue < this.RankValue)
+            if (piece.Color.Equals(this.Color))
             {
-                this.CurrentLocation = piece.CurrentLocation;
-                piece.Eliminate();                
-                piece.RemoveFromBoard();
-                Console.WriteLine($"This piece is eliminated {piece}");
-                return piece;
+                throw new System.ApplicationException("Cannot challenge piece of the same color/side/team.");
+            }
+        }
+
+        public virtual SoldierPiece Challenge(SoldierPiece piece)
+        {
+            ValidateChallenge(piece);
+            if (this.GetType().Equals(piece.GetType()))
+            {
+                return SwapSoldierPiece(piece, this);
+            }
+            if (piece.RankValue > this.RankValue)
+            {
+                Console.WriteLine($"This piece is eliminated {this}");
+                return SwapSoldierPiece(this, piece);
             }
             else
             {
-                piece.CurrentLocation = this.CurrentLocation;
-                this.Eliminate();
-                this.RemoveFromBoard();
-                Console.WriteLine($"This piece is eliminated {this}");
-                return this;
-            }                
+                Console.WriteLine($"This piece is eliminated {piece}");
+                return SwapSoldierPiece(piece, this);
+            }
         }
 
         public void RemoveFromBoard()
