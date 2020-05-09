@@ -56,7 +56,7 @@ namespace GameOfTheGenerals
             // do errors
             game.MoveSoldierPiece(new BoardLocation(8, 3), new BoardLocation(8, 5));
 
-            // game.ListBoardSoldierPieces();
+            game.ListBoardSoldierPieces();
             game.ListEliminatedSoldierPieces();            
         }
     }
